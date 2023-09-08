@@ -1,0 +1,65 @@
+﻿@model IEnumerable<StudentManagementSystem.ViewModel.StudentRegistrationViewModel>
+
+@{
+    ViewData["Title"] = "Student Index";
+}
+
+<h1>Student Registration</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New Student</a>
+</p>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Group</th>
+            <th>Level</th>
+            <th>Course</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => student.groupName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.levelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.courseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.PhoneNo)
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@student.Id">Details</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@student.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .btn {
+        margin-right: 5px;
+    }
+</style>

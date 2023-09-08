@@ -1,0 +1,86 @@
+﻿@{
+	ViewData["Title"] = "Create";
+}
+<script src="~/js/angularjs.js"></script>
+<script src="~/js/attendance/attendancecreate.js"></script>
+
+<h2>Attendance Create</h2>
+<hr />
+<div ng-app="AttendanceModule" ng-controller="AttendancesController" ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(ViewData["AttendanceDataList"]))">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="form-group col-md-2">
+					<label class="control-label">Date</label>
+					<div>
+					</div>
+					<input ng-model="Date" class="form-control" type="date" />
+				</div>
+				<div class="form-group col-md-2">
+					<label class="control-label">Course</label>
+					<select ng-model="courseId" class="form-control">
+						<option value ="">
+							Select Course</option>
+							<option ng-repeat ="option in courselist"  value="{{option.courseId}}">
+								{{option.courseName}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-2">
+					<label class="control-label">Level</label>
+					<select ng-model="levelId" class="form-control">
+						<option value ="">
+							Select Level</option>
+							<option ng-repeat ="option in levellist"  value="{{option.levelId}}">
+								{{option.levelName}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-2">
+					<label class="control-label">Group</label>
+					<select ng-model="groupId" class="form-control">
+						<option value ="">
+							Select Group</option>
+							<option ng-repeat ="option in grouplist"  value="{{option.Id}}">
+								{{option.Name}}</option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-2" style="margin-top:23px">
+					<input type="button" value="Search" ng-click="onClickSearchBtn()" class="btn btn-primary" />
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">S.N</th>
+						<th scope="col">Name</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in studentlist">
+						<td>{{item.Sn}}</td>
+						<td>{{item.Name}}</td>
+						<td>
+							<select class="form-control" ng-model="item.Status" ng-options="x.Name for x in statuslist">
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="box-footer"> 
+			<input class="btn btn-success" type="button" value="Save" ng-click="onClickSaveBtn()" />
+		</div>
+	</div>
+
+</div>
+
